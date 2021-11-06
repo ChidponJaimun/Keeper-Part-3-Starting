@@ -28,12 +28,18 @@ function CreateArea(props) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input onChange={textHandle} name="title" placeholder="Title" />
+        <input
+          onChange={textHandle}
+          name="title"
+          placeholder="Title"
+          value={note.title}
+        />
         <textarea
           onChange={textHandle}
           name="content"
           placeholder="Take a note..."
           rows="3"
+          value={note.content}
         />
         <button
           onClick={() => {
