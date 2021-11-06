@@ -7,6 +7,11 @@ import CreateArea from "./CreateArea";
 function App() {
   const [allNote, setAllNote] = useState([]);
 
+  const [note, setNote] = useState({
+    key: "",
+    title: "",
+    content: ""
+  });
   return (
     <div>
       <Header />
