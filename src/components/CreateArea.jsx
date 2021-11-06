@@ -6,48 +6,39 @@ function CreateArea(props) {
     content: ""
   });
 
-  function textHandle(event) {
-    const name = event.target.name;
-    const value = event.target.value;
-
-    if (name === "title") {
-      setNote((prevValue) => {
-        return { title: value, content: prevValue.content };
-      });
-    } else if (name === "content") {
-      setNote((prevValue) => {
-        return { title: prevValue.content, content: value };
-      });
-    }
+  function changeHandle(event) {
+    const { name, value } = event.target;
+    setNote((prevValue) => {
+      return { ...prevValue, [name]: value };
+    });
   }
 
   function handleSubmit(event) {
+    props.onAdd(note);
+    setNote({
+      title: "",
+      content: ""
+    });
     event.preventDefault();
   }
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <input
-          onChange={textHandle}
+          onChange={changeHandle}
           name="title"
           placeholder="Title"
           value={note.title}
         />
         <textarea
-          onChange={textHandle}
+          onChange={changeHandle}
           name="content"
           placeholder="Take a note..."
           rows="3"
           value={note.content}
         />
-        <button
-          onClick={() => {
-            props.onAdd(note);
-          }}
-        >
-          Add
-        </button>
+        <button onClick={handleSubmit}>Add</button>
       </form>
     </div>
   );
